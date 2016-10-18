@@ -6,11 +6,11 @@ import java.util.List;
 public class Produto {
     
     private int codProd;
-    private String nomeProd;
+    private String nome;
 
-    public Produto(int codProd, String nomeProd) {
+    public Produto(int codProd, String nome) {
         this.codProd = codProd;
-        this.nomeProd = nomeProd;
+        this.nome = nome;
     }
 
     public int getCodProd() {
@@ -21,12 +21,12 @@ public class Produto {
         this.codProd = codProd;
     }
 
-    public String getNomeProd() {
-        return nomeProd;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeProd(String nomeProd) {
-        this.nomeProd = nomeProd;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
     /**
@@ -34,7 +34,7 @@ public class Produto {
      * @return
      * @throws ClassNotFoundException
      */
-    public static List<Produto> obterProduto() throws ClassNotFoundException{
-        return ProdutoDAO.obterProduto();
+    public static List<Produto> obterProdutos() throws ClassNotFoundException{
+        return ProdutoDAO.obterProdutos();
     }
 }

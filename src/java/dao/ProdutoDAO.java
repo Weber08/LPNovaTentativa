@@ -9,7 +9,7 @@ import java.util.List;
 import modelo.Produto;
 
 public class ProdutoDAO {
-    public static List<Produto> obterProduto() throws ClassNotFoundException {
+    public static List<Produto> obterProdutos() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         List<Produto> produtos = new ArrayList<Produto>();        

@@ -33,7 +33,7 @@ public class ManterProdutoController extends HttpServlet {
     private void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("produtos", Produto.obterProduto());
+            request.setAttribute("produtos", Produto.obterProdutos());
             RequestDispatcher view = request.getRequestDispatcher("/manterProduto.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
