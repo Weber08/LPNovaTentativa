@@ -8,9 +8,6 @@ public class Produto {
     private int codProd;
     private String nomeProd;
 
-    public Produto() {
-    }
-
     public Produto(int codProd, String nomeProd) {
         this.codProd = codProd;
         this.nomeProd = nomeProd;
@@ -32,7 +29,12 @@ public class Produto {
         this.nomeProd = nomeProd;
     }
     
-        public static List<Produto> obterProduto() throws ClassNotFoundException{
+    /**
+     *
+     * @return
+     * @throws ClassNotFoundException
+     */
+    public static List<Produto> obterProduto() throws ClassNotFoundException{
         return ProdutoDAO.obterProduto();
     }
 }

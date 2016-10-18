@@ -7,6 +7,6 @@
     </head>
     
     <body>
-        <a href="PesquisarProdutoController"><button>Produtos</button></a>
+        <a href="PesquisarProdutoController"><button>Produto</button></a>
     </body>
 </html>
