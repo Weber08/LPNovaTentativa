@@ -5,20 +5,20 @@ import java.util.List;
 
 public class Produto {
     
-    private int codProd;
+    private int codigo;
     private String nome;
 
-    public Produto(int codProd, String nome) {
-        this.codProd = codProd;
+    public Produto(int codigo, String nome) {
+        this.codigo = codigo;
         this.nome = nome;
     }
 
-    public int getCodProd() {
-        return codProd;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodProd(int codProd) {
-        this.codProd = codProd;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -29,11 +29,6 @@ public class Produto {
         this.nome = nome;
     }
     
-    /**
-     *
-     * @return
-     * @throws ClassNotFoundException
-     */
     public static List<Produto> obterProdutos() throws ClassNotFoundException{
         return ProdutoDAO.obterProdutos();
     }

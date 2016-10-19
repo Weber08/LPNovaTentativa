@@ -18,8 +18,8 @@ public class ProdutoDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from produto");
             while (rs.next()) {
-                Produto produto = new Produto(rs.getInt("codProd"),                     
-                        rs.getString("nomeProd"));                  
+                Produto produto = new Produto(rs.getInt("codigo"),                     
+                        rs.getString("nome"));                  
                         produtos.add(produto);
             }
         } catch (SQLException e) {

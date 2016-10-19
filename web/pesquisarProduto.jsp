@@ -18,10 +18,10 @@
             </tr>
             <c:forEach items="${produtos}" var="produto">
                 <tr>
-                    <td> <c:out value="${produto.codProd}" /></td>
+                    <td> <c:out value="${produto.codigo}" /></td>
                     <td> <c:out value="${produto.nome}" /></td>
-                    <td><a href="ManterProdutoController?acao=prepararEditar&codigo=<c:out value="${produto.codProd}"/>">Editar</a></td>
-                    <td><a href="ManterProdutoController?acao=prepararEditar&codigo=<c:out value="${produto.codProd}"/>">Excluir</a></td>
+                    <td><a href="ManterProdutoController?acao=prepararEditar&codigo=<c:out value="${produto.codigo}"/>">Editar</a></td>
+                    <td><a href="ManterProdutoController?acao=prepararEditar&codigo=<c:out value="${produto.codigo}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>
          </table>

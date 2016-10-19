@@ -14,9 +14,9 @@
             <table>
                 <tr>
                     <td>Código:</td> 
-                    <td><input type="text" name="txtCodProd" value="${produto.codProd}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>              
+                    <td><input type="text" name="txtCodProd" value="${produto.codigo}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>              
                     <td> Nome:</td> 
-                    <td><input type="text" name="txtNomeProd" value="${produto.nomeProd}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><input type="text" name="txtNomeProd" value="${produto.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>
