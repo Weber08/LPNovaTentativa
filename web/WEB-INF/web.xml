@@ -16,6 +16,14 @@
         <servlet-name>PesquisarClienteController</servlet-name>
         <servlet-class>controller.PesquisarClienteController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManterEstoqueController</servlet-name>
+        <servlet-class>controller.ManterEstoqueController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisarEstoqueController</servlet-name>
+        <servlet-class>controller.PesquisarEstoqueController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisarProdutoController</servlet-name>
         <url-pattern>/PesquisarProdutoController</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>PesquisarClienteController</servlet-name>
         <url-pattern>/PesquisarClienteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterEstoqueController</servlet-name>
+        <url-pattern>/ManterEstoqueController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisarEstoqueController</servlet-name>
+        <url-pattern>/PesquisarEstoqueController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
