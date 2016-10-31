@@ -10,5 +10,6 @@
         <a href="PesquisarProdutoController"><button>Produto</button></a>
         <a href="PesquisarClienteController"><button>Cliente</button></a>
         <a href="PesquisarEstoqueController"><button>Estoque</button></a>
+        <a href="PesquisarUnidadeController"><button>Unidade</button></a>
     </body>
 </html>

@@ -24,6 +24,14 @@
         <servlet-name>PesquisarEstoqueController</servlet-name>
         <servlet-class>controller.PesquisarEstoqueController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManterUnidadeController</servlet-name>
+        <servlet-class>controller.ManterUnidadeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisarUnidadeController</servlet-name>
+        <servlet-class>controller.PesquisarUnidadeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisarProdutoController</servlet-name>
         <url-pattern>/PesquisarProdutoController</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>PesquisarEstoqueController</servlet-name>
         <url-pattern>/PesquisarEstoqueController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterUnidadeController</servlet-name>
+        <url-pattern>/ManterUnidadeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisarUnidadeController</servlet-name>
+        <url-pattern>/PesquisarUnidadeController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
