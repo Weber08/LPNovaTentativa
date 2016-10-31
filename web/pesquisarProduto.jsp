@@ -14,12 +14,16 @@
             <tr>
                 <th>Codigo </th>
                 <th>Nome</th> 
+                <th>Preco</th>
+                <th>Quantidade</th>
                 <th colspan="2">Ação</th>  
             </tr>
             <c:forEach items="${produtos}" var="produto">
                 <tr>
                     <td> <c:out value="${produto.codigo}" /></td>
                     <td> <c:out value="${produto.nome}" /></td>
+                    <td> <c:out value="${produto.preco}" /></td>
+                    <td> <c:out value="${produto.quantidade}" /></td>
                     <td><a href="ManterProdutoController?acao=prepararEditar&codigo=<c:out value="${produto.codigo}"/>">Editar</a></td>
                     <td><a href="ManterProdutoController?acao=prepararEditar&codigo=<c:out value="${produto.codigo}"/>">Excluir</a></td>
                 </tr>

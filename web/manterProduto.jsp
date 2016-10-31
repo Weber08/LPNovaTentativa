@@ -15,8 +15,12 @@
                 <tr>
                     <td>Código:</td> 
                     <td><input type="text" name="txtCodigo" value="${produto.codigo}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>              
-                    <td> Nome:</td> 
+                    <td>Nome:</td> 
                     <td><input type="text" name="txtNome" value="${produto.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td>Preco:</td>
+                    <td><input type="text" name="txtPreco" value="${produto.preco}"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td>Quantidade:</td>
+                    <td><input type="text" name="txtQuantidade" value="${produto.quantidade}"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="btnConfirmar" value="Confirmar"></td>

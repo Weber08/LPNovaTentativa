@@ -45,6 +45,8 @@ public class ManterProdutoController extends HttpServlet {
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
         String nome = request.getParameter("txtNome");
+        float preco = Float.parseFloat(request.getParameter("txtPreco"));
+        float quantidade = Float.parseFloat(request.getParameter("txtQuantidade"));
         
         try {
             /*  caso seja necessário
@@ -53,7 +55,7 @@ public class ManterProdutoController extends HttpServlet {
                 professor = Professor.obterProfessor(coordenador);
         }
              */
-            Produto produto = new Produto(codigo, nome );
+            Produto produto = new Produto(codigo, nome , preco , quantidade);
             produto.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisarProdutoController");
             view.forward(request, response);

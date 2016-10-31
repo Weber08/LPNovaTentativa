@@ -20,7 +20,9 @@ public class ProdutoDAO {
             ResultSet rs = comando.executeQuery("select * from produto");
             while (rs.next()) {
                 Produto produto = new Produto(rs.getInt("codigo"),                     
-                        rs.getString("nome"));                  
+                        rs.getString("nome"),
+                        rs.getFloat("preco"),
+                        rs.getFloat("quantidade"));                  
                         produtos.add(produto);
             }
         } catch (SQLException e) {
@@ -41,7 +43,9 @@ public class ProdutoDAO {
             ResultSet rs = comando.executeQuery("select * from produto where codigo = " + codigo);
             rs.first();
             produto = new Produto(rs.getInt("codigo"),
-                    rs.getString("nome"));
+                    rs.getString("nome"),
+                    rs.getFloat("preco"),
+                    rs.getFloat("quantidade"));
                     //NULL PARA SER SETADO
                 //turma.setMatriculaProfessorCoordenador(rs.getInt("professorCoordenador")); CASO TENHA CHAVE ESTRANGEIRA
         } catch (SQLException e){
@@ -70,10 +74,12 @@ public class ProdutoDAO {
         Connection conexao = null;
         try {
             conexao = BDMini.getConexao();
-            String sql = "insert into produto (codigo , nome ) values (?,?)";
+            String sql = "insert into produto (codigo , nome , preco , quantidade ) values (?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, produto.getCodigo());
             comando.setString(2, produto.getNome());
+            comando.setFloat(3, produto.getPreco());
+            comando.setFloat(4, produto.getQuantidade());
             /* if (curso.getCoordenador() == null){ CASO TENHA CHAVE ESTRANGEIRA
                 comando.setNull(6 , Types.NULL);
             }else {

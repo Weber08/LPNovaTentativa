@@ -8,10 +8,14 @@ public class Produto {
 
     private int codigo;
     private String nome;
+    private float preco;
+    private float quantidade;
 
-    public Produto(int codigo, String nome) {
+    public Produto(int codigo, String nome, float preco, float quantidade) {
         this.codigo = codigo;
         this.nome = nome;
+        this.preco = preco;
+        this.quantidade = quantidade;
     }
 
     public int getCodigo() {
@@ -28,6 +32,22 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
+    public float getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(float quantidade) {
+        this.quantidade = quantidade;
     }
 
     public static Produto obterProduto(int codigo) throws ClassNotFoundException {
