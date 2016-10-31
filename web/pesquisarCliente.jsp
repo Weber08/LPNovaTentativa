@@ -6,27 +6,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pesquisar Produtos</title>
+        <title>Pesquisar Clientes</title>
     </head>
     <body>
-        <h1>Pesquisar Produtos</h1>
+        <h1>Pesquisar Clientes</h1>
         <table border="1">
             <tr>
                 <th>Codigo </th>
                 <th>Nome</th> 
                 <th colspan="2">Ação</th>  
             </tr>
-            <c:forEach items="${produtos}" var="produto">
+            <c:forEach items="${clientes}" var="cliente">
                 <tr>
-                    <td> <c:out value="${produto.codigo}" /></td>
-                    <td> <c:out value="${produto.nome}" /></td>
-                    <td><a href="ManterProdutoController?acao=prepararEditar&codigo=<c:out value="${produto.codigo}"/>">Editar</a></td>
-                    <td><a href="ManterProdutoController?acao=prepararEditar&codigo=<c:out value="${produto.codigo}"/>">Excluir</a></td>
+                    <td> <c:out value="${cliente.codigo}" /></td>
+                    <td> <c:out value="${cliente.nome}" /></td>
+                    <td><a href="ManterClienteController?acao=prepararEditar&codigo=<c:out value="${cliente.codigo}"/>">Editar</a></td>
+                    <td><a href="ManterClienteController?acao=prepararEditar&codigo=<c:out value="${cliente.codigo}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>
          </table>
        
-        <form action="ManterProdutoController?acao=prepararIncluir" method="post">
+        <form action="ManterClienteController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="incluir"/>
         </form>
         <br><a href="index.jsp"><button>Inicio</button></a>

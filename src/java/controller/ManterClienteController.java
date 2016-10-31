@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.io.IOException;
@@ -8,11 +13,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Produto;
+import modelo.Cliente;
 
-public class ManterProdutoController extends HttpServlet {
+/**
+ *
+ * @author Weber
+ */
+public class ManterClienteController extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
@@ -33,8 +42,8 @@ public class ManterProdutoController extends HttpServlet {
     private void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("produtos", Produto.obterProdutos());
-            RequestDispatcher view = request.getRequestDispatcher("/manterProduto.jsp");
+            request.setAttribute("clientes", Cliente.obterClientes());
+            RequestDispatcher view = request.getRequestDispatcher("/manterCliente.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -53,9 +62,9 @@ public class ManterProdutoController extends HttpServlet {
                 professor = Professor.obterProfessor(coordenador);
         }
              */
-            Produto produto = new Produto(codigo, nome );
-            produto.gravar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisarProdutoController");
+            Cliente cliente = new Cliente(codigo, nome );
+            cliente.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisarClienteController");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -67,11 +76,11 @@ public class ManterProdutoController extends HttpServlet {
         public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Editar");
-            request.setAttribute("produtos", Produto.obterProdutos());
+            request.setAttribute("clientes", Cliente.obterClientes());
             int codigo = Integer.parseInt(request.getParameter("codigo"));
-            Produto produto = Produto.obterProduto(codigo);
-            request.setAttribute("produto", produto);
-            RequestDispatcher view = request.getRequestDispatcher("/manterProduto.jsp");
+            Cliente cliente = Cliente.obterCliente(codigo);
+            request.setAttribute("cliente", cliente);
+            RequestDispatcher view = request.getRequestDispatcher("/manterCliente.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {

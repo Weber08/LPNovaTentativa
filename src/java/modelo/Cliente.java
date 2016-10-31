@@ -1,15 +1,14 @@
 package modelo;
 
-import dao.ProdutoDAO;
+import dao.ClienteDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Produto {
-
+public class Cliente {
     private int codigo;
     private String nome;
 
-    public Produto(int codigo, String nome) {
+    public Cliente(int codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
     }
@@ -29,16 +28,16 @@ public class Produto {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public static Produto obterProduto(int codigo) throws ClassNotFoundException {
-        return ProdutoDAO.obterProduto(codigo);
+    
+        public static Cliente obterCliente(int codigo) throws ClassNotFoundException {
+        return ClienteDAO.obterCliente(codigo);
     }
 
-    public static List<Produto> obterProdutos() throws ClassNotFoundException {
-        return ProdutoDAO.obterProdutos();
+    public static List<Cliente> obterClientes() throws ClassNotFoundException {
+        return ClienteDAO.obterClientes();
     }
 
     public void gravar() throws SQLException, ClassNotFoundException {
-        ProdutoDAO.gravar(this);
+        ClienteDAO.gravar(this);
     }
 }
