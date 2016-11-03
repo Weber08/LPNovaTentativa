@@ -15,16 +15,25 @@
                 <tr>
                     <td>Código:</td> 
                     <td><input type="text" name="txtCodigo" value="${estoque.codigo}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>              
-                    <td>Nome:</td> 
-                    <td><input type="text" name="txtNome" value="${estoque.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td>Preco:</td> 
-                    <td><input type="text" name="txtPreco" value="${estoque.preco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td>Quantidade:</td> 
-                    <td><input type="text" name="txtQuantidade" value="${estoque.quantidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td>Unidade:</td> 
-                    <td><input type="text" name="txtUnidade" value="${estoque.Unidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td>Marca:</td> 
-                    <td><input type="text" name="txtMarca" value="${estoque.marca}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <td>Nome:</td> 
+                        <td><input type="text" name="txtNome" value="${estoque.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <td>Preco:</td> 
+                        <td><input type="text" name="txtPreco" value="${estoque.preco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <td>Quantidade:</td> 
+                        <td><input type="text" name="txtQuantidade" value="${estoque.quantidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <tr>
+                        <td>Unidade:</td>
+                        <td>
+                            <select name="optUnidade" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <option value="0" <c:if test="${estoque.unidade.codigo == null}"> selected</c:if>> </option>  
+                            <c:forEach items="${unidades}" var="unidade">
+                                <option value="${unidade.codigo}" <c:if test="${estoque.unidade.codigo == unidade.codigo}"> selected</c:if>>${unidade.descricao}</option>  
+                            </c:forEach>
+                        </select>
+                    </td>
+                </tr> 
+                <td>Marca:</td> 
+                <td><input type="text" name="txtMarca" value="${estoque.marca}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td>Fornecedor:</td> 
                     <td><input type="text" name="txtFornecedor" value="${estoque.fornecedor}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td>Data de Compra:</td> 
@@ -45,10 +54,10 @@
                 var caracteresValidos = "0123456789";
                 var ehNumero = true;
                 var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
-                { 
-                    umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                for (i = 0; i < valor.length && ehNumero == true; i++)
+                {
+                    umCaracter = valor.charAt(i);
+                    if (caracteresValidos.indexOf(umCaracter) == -1)
                     {
                         ehNumero = false;
                     }
@@ -56,37 +65,37 @@
                 return ehNumero;
             }
 
-            function validarFormulario(form) { 
+            function validarFormulario(form) {
                 var mensagem;
                 mensagem = "";
-                if (form.txtCodCurso.value == ""){
+                if (form.txtCodCurso.value == "") {
                     mensagem = mensagem + "Informe o Código do Curso\n";
-                }                             
-                if (form.txtNomeCurso.value == ""){
+                }
+                if (form.txtNomeCurso.value == "") {
                     mensagem = mensagem + "Informe o Nome do Curso\n";
-                }             
-                if (form.txtTotalPeriodos.value == ""){
+                }
+                if (form.txtTotalPeriodos.value == "") {
                     mensagem = mensagem + "Informe o Total de Períodos\n";
-                }                  
-                if (form.txtCargaHoraria.value == ""){
+                }
+                if (form.txtCargaHoraria.value == "") {
                     mensagem = mensagem + "Informe a Carga Horária\n";
-                }                  
-                if (!campoNumerico(form.txtCodCurso.value)){
+                }
+                if (!campoNumerico(form.txtCodCurso.value)) {
                     mensagem = mensagem + "Código do Curso deve ser numérico\n";
-                }                  
-                if (!campoNumerico(form.txtTotalPeriodos.value)){
+                }
+                if (!campoNumerico(form.txtTotalPeriodos.value)) {
                     mensagem = mensagem + "Total de Períodos deve ser numérico\n";
-                }                  
-                if (!campoNumerico(form.txtCargaHoraria.value)){
+                }
+                if (!campoNumerico(form.txtCargaHoraria.value)) {
                     mensagem = mensagem + "Carga Horária deve ser numérica\n";
-                }                  
-                if (mensagem == ""){
+                }
+                if (mensagem == "") {
                     return true;
-                }else{
+                } else {
                     alert(mensagem);
                     return false;
-                }                
-            } 
+                }
+            }
             //-->
         </SCRIPT>        
     </body>

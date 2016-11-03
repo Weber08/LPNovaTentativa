@@ -20,9 +20,9 @@ public class ManterProdutoController extends HttpServlet {
         } else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
         } else if (acao.equals("prepararEditar")) {
-            prepararEditar(request , response);
+            prepararEditar(request, response);
         } else if (acao.equals("confirmarEditar")) {
-            //confirmarEditar(request , response);
+            confirmarEditar(request , response);
         } else if (acao.equals("prepararExcluir")) {
             //prepararExcluir(request , response);
         } else if (acao.equals("confirmarExcluir")) {
@@ -47,15 +47,9 @@ public class ManterProdutoController extends HttpServlet {
         String nome = request.getParameter("txtNome");
         float preco = Float.parseFloat(request.getParameter("txtPreco"));
         float quantidade = Float.parseFloat(request.getParameter("txtQuantidade"));
-        
+
         try {
-            /*  caso seja necessário
-            Professor professor = null;
-            if (coordenador != 0) {
-                professor = Professor.obterProfessor(coordenador);
-        }
-             */
-            Produto produto = new Produto(codigo, nome , preco , quantidade);
+            Produto produto = new Produto(codigo, nome, preco, quantidade);
             produto.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisarProdutoController");
             view.forward(request, response);
@@ -65,8 +59,8 @@ public class ManterProdutoController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
-    
-        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Editar");
             request.setAttribute("produtos", Produto.obterProdutos());
@@ -77,9 +71,27 @@ public class ManterProdutoController extends HttpServlet {
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
-        } catch (ClassNotFoundException ex){
+        } catch (ClassNotFoundException ex) {
         }
 
+    }
+
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
+        String nome = request.getParameter("txtNome");
+        float preco = Float.parseFloat(request.getParameter("txtPreco"));
+        float quantidade = Float.parseFloat(request.getParameter("txtQuantidade"));
+
+        try {
+            Produto produto = new Produto(codigo, nome, preco, quantidade);
+            produto.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisarProdutoController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

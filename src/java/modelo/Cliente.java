@@ -40,4 +40,8 @@ public class Cliente {
     public void gravar() throws SQLException, ClassNotFoundException {
         ClienteDAO.gravar(this);
     }
+    
+    public void alterar() throws SQLException, ClassNotFoundException {
+        ClienteDAO.alterar(this);
+    }
 }

@@ -40,4 +40,8 @@ public class Unidade {
     public void gravar() throws SQLException, ClassNotFoundException {
         UnidadeDAO.gravar(this);
     }
+    
+    public void alterar() throws SQLException, ClassNotFoundException {
+        UnidadeDAO.alterar(this);
+    }
 }

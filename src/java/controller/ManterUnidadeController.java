@@ -20,9 +20,9 @@ public class ManterUnidadeController extends HttpServlet {
         } else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
         } else if (acao.equals("prepararEditar")) {
-            prepararEditar(request , response);
+            prepararEditar(request, response);
         } else if (acao.equals("confirmarEditar")) {
-            //confirmarEditar(request , response);
+            confirmarEditar(request , response);
         } else if (acao.equals("prepararExcluir")) {
             //prepararExcluir(request , response);
         } else if (acao.equals("confirmarExcluir")) {
@@ -47,12 +47,6 @@ public class ManterUnidadeController extends HttpServlet {
         String descricao = request.getParameter("txtDescricao");
 
         try {
-            /*  caso seja necessário
-            Professor professor = null;
-            if (coordenador != 0) {
-                professor = Professor.obterProfessor(coordenador);
-        }
-             */
             Unidade unidade = new Unidade(codigo, descricao);
             unidade.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisarUnidadeController");
@@ -63,8 +57,8 @@ public class ManterUnidadeController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
-    
-        public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
+
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Editar");
             request.setAttribute("unidades", Unidade.obterUnidades());
@@ -75,10 +69,27 @@ public class ManterUnidadeController extends HttpServlet {
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
-        } catch (ClassNotFoundException ex){
+        } catch (ClassNotFoundException ex) {
         }
 
     }
+
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
+        String descricao = request.getParameter("txtDescricao");
+
+        try {
+            Unidade unidade = new Unidade(codigo, descricao);
+            unidade.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisarUnidadeController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -61,4 +61,8 @@ public class Produto {
     public void gravar() throws SQLException, ClassNotFoundException {
         ProdutoDAO.gravar(this);
     }
+    
+    public void alterar() throws SQLException,ClassNotFoundException {
+        ProdutoDAO.alterar(this);
+    }
 }

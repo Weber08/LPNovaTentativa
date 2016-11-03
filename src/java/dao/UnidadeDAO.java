@@ -10,18 +10,19 @@ import java.util.List;
 import modelo.Unidade;
 
 public class UnidadeDAO {
+
     public static List<Unidade> obterUnidades() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        List<Unidade> unidades = new ArrayList<Unidade>();        
+        List<Unidade> unidades = new ArrayList<Unidade>();
         try {
             conexao = BDMini.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from unidade");
             while (rs.next()) {
-                Unidade unidade = new Unidade(rs.getInt("codigo"),                     
-                        rs.getString("descricao"));                  
-                        unidades.add(unidade);
+                Unidade unidade = new Unidade(rs.getInt("codigo"),
+                        rs.getString("descricao"));
+                unidades.add(unidade);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,8 +31,8 @@ public class UnidadeDAO {
         }
         return unidades;
     }
-    
-        public static Unidade obterUnidade(int codigo) throws ClassNotFoundException {
+
+    public static Unidade obterUnidade(int codigo) throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         Unidade unidade = null;
@@ -42,16 +43,15 @@ public class UnidadeDAO {
             rs.first();
             unidade = new Unidade(rs.getInt("codigo"),
                     rs.getString("descricao"));
-                    //NULL PARA SER SETADO
-                //turma.setMatriculaProfessorCoordenador(rs.getInt("professorCoordenador")); CASO TENHA CHAVE ESTRANGEIRA
-        } catch (SQLException e){
+            //NULL PARA SER SETADO
+            //turma.setMatriculaProfessorCoordenador(rs.getInt("professorCoordenador")); CASO TENHA CHAVE ESTRANGEIRA
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            fecharConexao(conexao , comando);
+            fecharConexao(conexao, comando);
         }
         return unidade;
     }
-
 
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
@@ -65,8 +65,8 @@ public class UnidadeDAO {
 
         }
     }
-    
-        public static void gravar(Unidade unidade) throws SQLException, ClassNotFoundException {
+
+    public static void gravar(Unidade unidade) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BDMini.getConexao();
@@ -79,6 +79,23 @@ public class UnidadeDAO {
             }else {
                 comando.setInt(6, curso.getCoordenador().getMatricula());
             }*/
+            comando.execute();
+            comando.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void alterar(Unidade unidade) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BDMini.getConexao();
+            String sql = "update unidade set descricao = ? where codigo = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, unidade.getDescricao());
+            comando.setInt(2, unidade.getCodigo());
             comando.execute();
             comando.close();
             conexao.close();

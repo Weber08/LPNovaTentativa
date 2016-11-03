@@ -29,7 +29,7 @@
                     <td> <c:out value="${estoque.nome}" /></td>
                     <td> <c:out value="${estoque.preco}" /></td>
                     <td> <c:out value="${estoque.quantidade}" /></td>
-                    <td> <c:out value="${estoque.unidade}" /></td>
+                    <td> <c:out value="${estoque.auxUnidade}" /></td>
                     <td> <c:out value="${estoque.marca}" /></td>
                     <td> <c:out value="${estoque.fornecedor}" /></td>
                     <td> <c:out value="${estoque.dataDeCompra}" /></td>

@@ -10,18 +10,19 @@ public class Estoque {
     private String nome;
     private float preco;
     private float quantidade;
-    private String unidade;
+    private Unidade unid;
     private String marca;
     private String fornecedor;
     private int dataDeCompra;
     private int vencimento;
+    private String auxUnidade;
 
-    public Estoque(int codigo, String nome, float preco, float quantidade, String unidade, String marca, String fornecedor, int dataDeCompra, int vencimento) {
+    public Estoque(int codigo, String nome, float preco, float quantidade, Unidade unid, String marca, String fornecedor, int dataDeCompra, int vencimento) {
         this.codigo = codigo;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
-        this.unidade = unidade;
+        this.unid = unid;
         this.marca = marca;
         this.fornecedor = fornecedor;
         this.dataDeCompra = dataDeCompra;
@@ -84,12 +85,12 @@ public class Estoque {
         this.dataDeCompra = dataDeCompra;
     }
 
-    public String getUnidade() {
-        return unidade;
+    public Unidade getUnid() {
+        return unid;
     }
 
-    public void setUnidade(String unidade) {
-        this.unidade = unidade;
+    public void setUnid(Unidade unid) {
+        this.unid = unid;
     }
 
     public int getVencimento() {
@@ -98,6 +99,14 @@ public class Estoque {
 
     public void setVencimento(int vencimento) {
         this.vencimento = vencimento;
+    }
+
+    public String getAuxUnidade() {
+        return auxUnidade;
+    }
+
+    public void setAuxUnidade(String auxUnidade) {
+        this.auxUnidade = auxUnidade;
     }
 
     public static Estoque obterEstoque(int codigo) throws ClassNotFoundException {
@@ -110,6 +119,10 @@ public class Estoque {
 
     public void gravar() throws SQLException, ClassNotFoundException {
         EstoqueDAO.gravar(this);
+    }
+    
+    public void alterar() throws SQLException, ClassNotFoundException {
+        EstoqueDAO.alterar(this);
     }
 
 }

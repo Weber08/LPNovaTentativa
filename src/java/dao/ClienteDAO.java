@@ -10,18 +10,19 @@ import java.util.List;
 import modelo.Cliente;
 
 public class ClienteDAO {
-        public static List<Cliente> obterClientes() throws ClassNotFoundException {
+
+    public static List<Cliente> obterClientes() throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        List<Cliente> clientes = new ArrayList<Cliente>();        
+        List<Cliente> clientes = new ArrayList<Cliente>();
         try {
             conexao = BDMini.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from cliente");
             while (rs.next()) {
-                Cliente cliente = new Cliente(rs.getInt("codigo"),                     
-                        rs.getString("nome"));                  
-                        clientes.add(cliente);
+                Cliente cliente = new Cliente(rs.getInt("codigo"),
+                        rs.getString("nome"));
+                clientes.add(cliente);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,8 +31,8 @@ public class ClienteDAO {
         }
         return clientes;
     }
-    
-        public static Cliente obterCliente(int codigo) throws ClassNotFoundException {
+
+    public static Cliente obterCliente(int codigo) throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         Cliente cliente = null;
@@ -42,16 +43,15 @@ public class ClienteDAO {
             rs.first();
             cliente = new Cliente(rs.getInt("codigo"),
                     rs.getString("nome"));
-                    //NULL PARA SER SETADO
-                //turma.setMatriculaProfessorCoordenador(rs.getInt("professorCoordenador")); CASO TENHA CHAVE ESTRANGEIRA
-        } catch (SQLException e){
+            //NULL PARA SER SETADO
+            //turma.setMatriculaProfessorCoordenador(rs.getInt("professorCoordenador")); CASO TENHA CHAVE ESTRANGEIRA
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            fecharConexao(conexao , comando);
+            fecharConexao(conexao, comando);
         }
         return cliente;
     }
-
 
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
@@ -65,8 +65,8 @@ public class ClienteDAO {
 
         }
     }
-    
-        public static void gravar(Cliente cliente) throws SQLException, ClassNotFoundException {
+
+    public static void gravar(Cliente cliente) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BDMini.getConexao();
@@ -74,11 +74,24 @@ public class ClienteDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, cliente.getCodigo());
             comando.setString(2, cliente.getNome());
-            /* if (curso.getCoordenador() == null){ CASO TENHA CHAVE ESTRANGEIRA
-                comando.setNull(6 , Types.NULL);
-            }else {
-                comando.setInt(6, curso.getCoordenador().getMatricula());
-            }*/
+
+            comando.execute();
+            comando.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void alterar(Cliente cliente) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BDMini.getConexao();
+            String sql = "update cliente set nome = ? where codigo = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, cliente.getNome());
+            comando.setInt(2, cliente.getCodigo());
             comando.execute();
             comando.close();
             conexao.close();
