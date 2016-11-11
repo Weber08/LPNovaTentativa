@@ -35,7 +35,7 @@
                     <td> <c:out value="${estoque.dataDeCompra}" /></td>
                     <td> <c:out value="${estoque.vencimento}" /></td>
                     <td><a href="ManterEstoqueController?acao=prepararEditar&codigo=<c:out value="${estoque.codigo}"/>">Editar</a></td>
-                    <td><a href="ManterEstoqueController?acao=prepararEditar&codigo=<c:out value="${estoque.codigo}"/>">Excluir</a></td>
+                    <td><a href="ManterEstoqueController?acao=prepararExcluir&codigo=<c:out value="${estoque.codigo}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>
         </table>

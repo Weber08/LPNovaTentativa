@@ -44,4 +44,8 @@ public class Cliente {
     public void alterar() throws SQLException, ClassNotFoundException {
         ClienteDAO.alterar(this);
     }
+    
+    public void excluir() throws SQLException,ClassNotFoundException {
+        ClienteDAO.excluir(this);
+    }
 }

@@ -25,7 +25,7 @@
                     <td> <c:out value="${produto.preco}" /></td>
                     <td> <c:out value="${produto.quantidade}" /></td>
                     <td><a href="ManterProdutoController?acao=prepararEditar&codigo=<c:out value="${produto.codigo}"/>">Editar</a></td>
-                    <td><a href="ManterProdutoController?acao=prepararEditar&codigo=<c:out value="${produto.codigo}"/>">Excluir</a></td>
+                    <td><a href="ManterProdutoController?acao=prepararExcluir&codigo=<c:out value="${produto.codigo}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>
          </table>

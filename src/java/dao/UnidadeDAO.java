@@ -104,5 +104,21 @@ public class UnidadeDAO {
             throw e;
         }
     }
+    
+    public static void excluir(Unidade unidade) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BDMini.getConexao();
+            String sql = "delete from unidade where codigo = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, unidade.getCodigo());
+            comando.execute();
+            comando.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            throw e;
+        }
+    }    
 
 }

@@ -80,11 +80,7 @@ public class ProdutoDAO {
             comando.setString(2, produto.getNome());
             comando.setFloat(3, produto.getPreco());
             comando.setFloat(4, produto.getQuantidade());
-            /* if (curso.getCoordenador() == null){ CASO TENHA CHAVE ESTRANGEIRA
-                comando.setNull(6 , Types.NULL);
-            }else {
-                comando.setInt(6, curso.getCoordenador().getMatricula());
-            }*/
+
             comando.execute();
             comando.close();
             conexao.close();
@@ -113,4 +109,19 @@ public class ProdutoDAO {
         }
     }
 
+    public static void excluir(Produto produto) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BDMini.getConexao();
+            String sql = "delete from produto where codigo = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, produto.getCodigo());
+            comando.execute();
+            comando.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
 }

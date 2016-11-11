@@ -43,8 +43,7 @@ public class ClienteDAO {
             rs.first();
             cliente = new Cliente(rs.getInt("codigo"),
                     rs.getString("nome"));
-            //NULL PARA SER SETADO
-            //turma.setMatriculaProfessorCoordenador(rs.getInt("professorCoordenador")); CASO TENHA CHAVE ESTRANGEIRA
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -92,6 +91,22 @@ public class ClienteDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setString(1, cliente.getNome());
             comando.setInt(2, cliente.getCodigo());
+            comando.execute();
+            comando.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void excluir(Cliente cliente) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BDMini.getConexao();
+            String sql = "delete from cliente where codigo = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, cliente.getCodigo());
             comando.execute();
             comando.close();
             conexao.close();

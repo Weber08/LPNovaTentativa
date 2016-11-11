@@ -30,7 +30,7 @@ public class EstoqueDAO {
                         rs.getString("fornecedor"),
                         rs.getInt("dataDeCompra"),
                         rs.getInt("vencimento"));
-                estoque.setAuxUnidade(rs.getString("auxUnidade"));
+                estoque.setAuxUnidade(rs.getInt("auxUnidade"));
                 estoques.add(estoque);
             }
         } catch (SQLException e) {
@@ -59,7 +59,7 @@ public class EstoqueDAO {
                     rs.getString("fornecedor"),
                     rs.getInt("dataDeCompra"),
                     rs.getInt("vencimento"));
-            estoque.setAuxUnidade(rs.getString("auxUnidade"));
+            estoque.setAuxUnidade(rs.getInt("auxUnidade"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,14 +110,14 @@ public class EstoqueDAO {
             throw e;
         }
     }
-    
-        public static void alterar(Estoque estoque) throws SQLException, ClassNotFoundException {
+
+    public static void alterar(Estoque estoque) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BDMini.getConexao();
             String sql = "update estoque set nome = ?,preco = ?,quantidade = ?,auxUnidade = ?,marca = ?,fornecedor = ?,dataDeCompra = ?,vencimento = ? where codigo = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            
+
             comando.setString(1, estoque.getNome());
             comando.setFloat(2, estoque.getPreco());
             comando.setFloat(3, estoque.getQuantidade());
@@ -132,6 +132,22 @@ public class EstoqueDAO {
             comando.setInt(8, estoque.getVencimento());
             comando.setInt(9, estoque.getCodigo());
 
+            comando.execute();
+            comando.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void excluir(Estoque estoque) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BDMini.getConexao();
+            String sql = "delete from estoque where codigo = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, estoque.getCodigo());
             comando.execute();
             comando.close();
             conexao.close();

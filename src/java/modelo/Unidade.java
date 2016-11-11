@@ -44,4 +44,8 @@ public class Unidade {
     public void alterar() throws SQLException, ClassNotFoundException {
         UnidadeDAO.alterar(this);
     }
+    
+    public void excluir() throws SQLException, ClassNotFoundException {
+        UnidadeDAO.excluir(this);
+    }
 }

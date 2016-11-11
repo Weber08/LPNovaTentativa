@@ -23,23 +23,22 @@ public class ManterEstoqueController extends HttpServlet {
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
         } else if (acao.equals("confirmarEditar")) {
-            confirmarEditar(request , response);
+            confirmarEditar(request, response);
         } else if (acao.equals("prepararExcluir")) {
-            //prepararExcluir(request , response);
+            prepararExcluir(request, response);
         } else if (acao.equals("confirmarExcluir")) {
-            //confirmarExcluir(request , response);
+            confirmarExcluir(request, response);
         }
     }
 
     private void prepararIncluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Incluir");
+            request.setAttribute("estoques", Estoque.obterEstoques());
             request.setAttribute("unidades", Unidade.obterUnidades());
             RequestDispatcher view = request.getRequestDispatcher("/manterEstoque.jsp");
             view.forward(request, response);
-        } catch (ServletException ex) {
-        } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
+        } catch (ServletException | IOException | ClassNotFoundException ex) {
         }
     }
 
@@ -59,8 +58,8 @@ public class ManterEstoqueController extends HttpServlet {
             if (auxUnidade != 0) {
                 unid = Unidade.obterUnidade(auxUnidade);
             }
-            
-            Estoque estoque = new Estoque(codigo, nome, preco, quantidade , unid , marca , fornecedor , dataDeCompra , vencimento);
+
+            Estoque estoque = new Estoque(codigo, nome, preco, quantidade, unid, marca, fornecedor, dataDeCompra, vencimento);
             estoque.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisarEstoqueController");
             view.forward(request, response);
@@ -75,6 +74,7 @@ public class ManterEstoqueController extends HttpServlet {
         try {
             request.setAttribute("operacao", "Editar");
             request.setAttribute("unidades", Unidade.obterUnidades());
+            request.setAttribute("estoques", Estoque.obterEstoques());
             int codigo = Integer.parseInt(request.getParameter("codigo"));
             Estoque estoque = Estoque.obterEstoque(codigo);
             request.setAttribute("estoque", estoque);
@@ -86,8 +86,8 @@ public class ManterEstoqueController extends HttpServlet {
         }
 
     }
-    
-        public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
         String nome = request.getParameter("txtNome");
         float preco = Float.parseFloat(request.getParameter("txtPreco"));
@@ -103,9 +103,54 @@ public class ManterEstoqueController extends HttpServlet {
             if (auxUnidade != 0) {
                 unid = Unidade.obterUnidade(auxUnidade);
             }
-            
-            Estoque estoque = new Estoque(codigo, nome, preco, quantidade , unid , marca , fornecedor , dataDeCompra , vencimento);
+
+            Estoque estoque = new Estoque(codigo, nome, preco, quantidade, unid, marca, fornecedor, dataDeCompra, vencimento);
             estoque.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisarEstoqueController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            request.setAttribute("estoques", Estoque.obterEstoques());
+            request.setAttribute("unidades", Unidade.obterUnidades());
+            int codigo = Integer.parseInt(request.getParameter("codigo"));
+            Estoque estoque = Estoque.obterEstoque(codigo);
+            request.setAttribute("estoque", estoque);
+            RequestDispatcher view = request.getRequestDispatcher("/manterEstoque.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        }
+
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
+        String nome = request.getParameter("txtNome");
+        float preco = Float.parseFloat(request.getParameter("txtPreco"));
+        float quantidade = Float.parseFloat(request.getParameter("txtQuantidade"));
+        int auxUnidade = Integer.parseInt(request.getParameter("optUnidade"));
+        String marca = request.getParameter("txtMarca");
+        String fornecedor = request.getParameter("txtFornecedor");
+        int dataDeCompra = Integer.parseInt(request.getParameter("txtDataDeCompra"));
+        int vencimento = Integer.parseInt(request.getParameter("txtVencimento"));
+
+        try {
+            Unidade unid = null;
+            if (auxUnidade != 0) {
+                unid = Unidade.obterUnidade(auxUnidade);
+            }
+
+            Estoque estoque = new Estoque(codigo, nome, preco, quantidade, unid, marca, fornecedor, dataDeCompra, vencimento);
+            estoque.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisarEstoqueController");
             view.forward(request, response);
         } catch (ServletException ex) {

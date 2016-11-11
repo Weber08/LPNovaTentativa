@@ -22,11 +22,11 @@ public class ManterProdutoController extends HttpServlet {
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
         } else if (acao.equals("confirmarEditar")) {
-            confirmarEditar(request , response);
+            confirmarEditar(request, response);
         } else if (acao.equals("prepararExcluir")) {
-            //prepararExcluir(request , response);
+            prepararExcluir(request, response);
         } else if (acao.equals("confirmarExcluir")) {
-            //confirmarExcluir(request , response);
+            confirmarExcluir(request, response);
         }
     }
 
@@ -85,6 +85,40 @@ public class ManterProdutoController extends HttpServlet {
         try {
             Produto produto = new Produto(codigo, nome, preco, quantidade);
             produto.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisarProdutoController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            request.setAttribute("produtos", Produto.obterProdutos());
+            int codigo = Integer.parseInt(request.getParameter("codigo"));
+            Produto produto = Produto.obterProduto(codigo);
+            request.setAttribute("produto", produto);
+            RequestDispatcher view = request.getRequestDispatcher("/manterProduto.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        }
+
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
+        String nome = request.getParameter("txtNome");
+        float preco = Float.parseFloat(request.getParameter("txtPreco"));
+        float quantidade = Float.parseFloat(request.getParameter("txtQuantidade"));
+
+        try {
+            Produto produto = new Produto(codigo, nome, preco, quantidade);
+            produto.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisarProdutoController");
             view.forward(request, response);
         } catch (ServletException ex) {

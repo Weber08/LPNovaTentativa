@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -15,10 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Cliente;
 
-/**
- *
- * @author Weber
- */
 public class ManterClienteController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -31,11 +22,11 @@ public class ManterClienteController extends HttpServlet {
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
         } else if (acao.equals("confirmarEditar")) {
-            confirmarEditar(request , response);
+            confirmarEditar(request, response);
         } else if (acao.equals("prepararExcluir")) {
-            //prepararExcluir(request , response);
+            prepararExcluir(request , response);
         } else if (acao.equals("confirmarExcluir")) {
-            //confirmarExcluir(request , response);
+            confirmarExcluir(request , response);
         }
     }
 
@@ -90,6 +81,38 @@ public class ManterClienteController extends HttpServlet {
         try {
             Cliente cliente = new Cliente(codigo, nome);
             cliente.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisarClienteController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            request.setAttribute("clientes", Cliente.obterClientes());
+            int codigo = Integer.parseInt(request.getParameter("codigo"));
+            Cliente cliente = Cliente.obterCliente(codigo);
+            request.setAttribute("cliente", cliente);
+            RequestDispatcher view = request.getRequestDispatcher("/manterCliente.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        }
+
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
+        String nome = request.getParameter("txtNome");
+
+        try {
+            Cliente cliente = new Cliente(codigo, nome);
+            cliente.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisarClienteController");
             view.forward(request, response);
         } catch (ServletException ex) {

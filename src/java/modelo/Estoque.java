@@ -15,7 +15,7 @@ public class Estoque {
     private String fornecedor;
     private int dataDeCompra;
     private int vencimento;
-    private String auxUnidade;
+    private int auxUnidade;
 
     public Estoque(int codigo, String nome, float preco, float quantidade, Unidade unid, String marca, String fornecedor, int dataDeCompra, int vencimento) {
         this.codigo = codigo;
@@ -101,11 +101,11 @@ public class Estoque {
         this.vencimento = vencimento;
     }
 
-    public String getAuxUnidade() {
+    public int getAuxUnidade() {
         return auxUnidade;
     }
 
-    public void setAuxUnidade(String auxUnidade) {
+    public void setAuxUnidade(int auxUnidade) {
         this.auxUnidade = auxUnidade;
     }
 
@@ -120,9 +120,13 @@ public class Estoque {
     public void gravar() throws SQLException, ClassNotFoundException {
         EstoqueDAO.gravar(this);
     }
-    
+
     public void alterar() throws SQLException, ClassNotFoundException {
         EstoqueDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        EstoqueDAO.excluir(this);
     }
 
 }

@@ -24,9 +24,9 @@ public class ManterUnidadeController extends HttpServlet {
         } else if (acao.equals("confirmarEditar")) {
             confirmarEditar(request , response);
         } else if (acao.equals("prepararExcluir")) {
-            //prepararExcluir(request , response);
+            prepararExcluir(request , response);
         } else if (acao.equals("confirmarExcluir")) {
-            //confirmarExcluir(request , response);
+            confirmarExcluir(request , response);
         }
     }
 
@@ -89,6 +89,38 @@ public class ManterUnidadeController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
+    
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            request.setAttribute("unidades", Unidade.obterUnidades());
+            int codigo = Integer.parseInt(request.getParameter("codigo"));
+            Unidade unidade = Unidade.obterUnidade(codigo);
+            request.setAttribute("unidade", unidade);
+            RequestDispatcher view = request.getRequestDispatcher("/manterUnidade.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        }
+
+    }    
+    
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
+        String descricao = request.getParameter("txtDescricao");
+
+        try {
+            Unidade unidade = new Unidade(codigo, descricao);
+            unidade.excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisarUnidadeController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

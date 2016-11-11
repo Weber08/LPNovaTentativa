@@ -21,7 +21,7 @@
                     <td> <c:out value="${unidade.codigo}" /></td>
                     <td> <c:out value="${unidade.descricao}" /></td>
                     <td><a href="ManterUnidadeController?acao=prepararEditar&codigo=<c:out value="${unidade.codigo}"/>">Editar</a></td>
-                    <td><a href="ManterUnidadeController?acao=prepararEditar&codigo=<c:out value="${unidade.codigo}"/>">Excluir</a></td>
+                    <td><a href="ManterUnidadeController?acao=prepararExcluir&codigo=<c:out value="${unidade.codigo}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>
          </table>
