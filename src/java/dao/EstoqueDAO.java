@@ -30,7 +30,7 @@ public class EstoqueDAO {
                         rs.getString("fornecedor"),
                         rs.getInt("dataDeCompra"),
                         rs.getInt("vencimento"));
-                estoque.setAuxUnidade(rs.getInt("auxUnidade"));
+                estoque.setCodigoUnidade(rs.getInt("codigoUnidade"));
                 estoques.add(estoque);
             }
         } catch (SQLException e) {
@@ -59,7 +59,7 @@ public class EstoqueDAO {
                     rs.getString("fornecedor"),
                     rs.getInt("dataDeCompra"),
                     rs.getInt("vencimento"));
-            estoque.setAuxUnidade(rs.getInt("auxUnidade"));
+            estoque.setCodigoUnidade(rs.getInt("codigoUnidade"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,16 +86,16 @@ public class EstoqueDAO {
         Connection conexao = null;
         try {
             conexao = BDMini.getConexao();
-            String sql = "insert into estoque (codigo , nome , preco , quantidade , auxUnidade ,marca , fornecedor , dataDeCompra , vencimento ) values (?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into estoque (codigo , nome , preco , quantidade , codigoUnidade ,marca , fornecedor , dataDeCompra , vencimento ) values (?,?,?,?,?,?,?,?,?)";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, estoque.getCodigo());
             comando.setString(2, estoque.getNome());
             comando.setFloat(3, estoque.getPreco());
             comando.setFloat(4, estoque.getQuantidade());
-            if (estoque.getUnid() == null) {
+            if (estoque.getUnidade() == null) {
                 comando.setNull(5, Types.NULL);
             } else {
-                comando.setInt(5, estoque.getUnid().getCodigo());
+                comando.setInt(5, estoque.getUnidade().getCodigo());
             }
             comando.setString(6, estoque.getMarca());
             comando.setString(7, estoque.getFornecedor());
@@ -115,16 +115,16 @@ public class EstoqueDAO {
         Connection conexao = null;
         try {
             conexao = BDMini.getConexao();
-            String sql = "update estoque set nome = ?,preco = ?,quantidade = ?,auxUnidade = ?,marca = ?,fornecedor = ?,dataDeCompra = ?,vencimento = ? where codigo = ?";
+            String sql = "update estoque set nome = ?,preco = ?,quantidade = ?,codigoUnidade = ?,marca = ?,fornecedor = ?,dataDeCompra = ?,vencimento = ? where codigo = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
 
             comando.setString(1, estoque.getNome());
             comando.setFloat(2, estoque.getPreco());
             comando.setFloat(3, estoque.getQuantidade());
-            if (estoque.getUnid() == null) {
+            if (estoque.getUnidade() == null) {
                 comando.setNull(4, Types.NULL);
             } else {
-                comando.setInt(4, estoque.getUnid().getCodigo());
+                comando.setInt(4, estoque.getUnidade().getCodigo());
             }
             comando.setString(5, estoque.getMarca());
             comando.setString(6, estoque.getFornecedor());

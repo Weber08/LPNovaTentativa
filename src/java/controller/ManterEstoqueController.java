@@ -47,19 +47,19 @@ public class ManterEstoqueController extends HttpServlet {
         String nome = request.getParameter("txtNome");
         float preco = Float.parseFloat(request.getParameter("txtPreco"));
         float quantidade = Float.parseFloat(request.getParameter("txtQuantidade"));
-        int auxUnidade = Integer.parseInt(request.getParameter("optUnidade"));
+        int codigoUnidade = Integer.parseInt(request.getParameter("optUnidade"));
         String marca = request.getParameter("txtMarca");
         String fornecedor = request.getParameter("txtFornecedor");
         int dataDeCompra = Integer.parseInt(request.getParameter("txtDataDeCompra"));
         int vencimento = Integer.parseInt(request.getParameter("txtVencimento"));
 
         try {
-            Unidade unid = null;
-            if (auxUnidade != 0) {
-                unid = Unidade.obterUnidade(auxUnidade);
+            Unidade unidade = null;
+            if (codigoUnidade != 0) {
+                unidade = Unidade.obterUnidade(codigoUnidade);
             }
 
-            Estoque estoque = new Estoque(codigo, nome, preco, quantidade, unid, marca, fornecedor, dataDeCompra, vencimento);
+            Estoque estoque = new Estoque(codigo, nome, preco, quantidade, unidade, marca, fornecedor, dataDeCompra, vencimento);
             estoque.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisarEstoqueController");
             view.forward(request, response);
@@ -92,19 +92,19 @@ public class ManterEstoqueController extends HttpServlet {
         String nome = request.getParameter("txtNome");
         float preco = Float.parseFloat(request.getParameter("txtPreco"));
         float quantidade = Float.parseFloat(request.getParameter("txtQuantidade"));
-        int auxUnidade = Integer.parseInt(request.getParameter("optUnidade"));
+        int codigoUnidade = Integer.parseInt(request.getParameter("optUnidade"));
         String marca = request.getParameter("txtMarca");
         String fornecedor = request.getParameter("txtFornecedor");
         int dataDeCompra = Integer.parseInt(request.getParameter("txtDataDeCompra"));
         int vencimento = Integer.parseInt(request.getParameter("txtVencimento"));
 
         try {
-            Unidade unid = null;
-            if (auxUnidade != 0) {
-                unid = Unidade.obterUnidade(auxUnidade);
+            Unidade unidade = null;
+            if (codigoUnidade != 0) {
+                unidade = Unidade.obterUnidade(codigoUnidade);
             }
 
-            Estoque estoque = new Estoque(codigo, nome, preco, quantidade, unid, marca, fornecedor, dataDeCompra, vencimento);
+            Estoque estoque = new Estoque(codigo, nome, preco, quantidade, unidade, marca, fornecedor, dataDeCompra, vencimento);
             estoque.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisarEstoqueController");
             view.forward(request, response);
@@ -144,12 +144,12 @@ public class ManterEstoqueController extends HttpServlet {
         int vencimento = Integer.parseInt(request.getParameter("txtVencimento"));
 
         try {
-            Unidade unid = null;
+            Unidade unidade = null;
             if (auxUnidade != 0) {
-                unid = Unidade.obterUnidade(auxUnidade);
+                unidade = Unidade.obterUnidade(auxUnidade);
             }
 
-            Estoque estoque = new Estoque(codigo, nome, preco, quantidade, unid, marca, fornecedor, dataDeCompra, vencimento);
+            Estoque estoque = new Estoque(codigo, nome, preco, quantidade, unidade, marca, fornecedor, dataDeCompra, vencimento);
             estoque.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisarEstoqueController");
             view.forward(request, response);

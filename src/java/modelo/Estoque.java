@@ -10,19 +10,19 @@ public class Estoque {
     private String nome;
     private float preco;
     private float quantidade;
-    private Unidade unid;
+    private Unidade unidade;
     private String marca;
     private String fornecedor;
     private int dataDeCompra;
     private int vencimento;
-    private int auxUnidade;
+    private int codigoUnidade;
 
-    public Estoque(int codigo, String nome, float preco, float quantidade, Unidade unid, String marca, String fornecedor, int dataDeCompra, int vencimento) {
+    public Estoque(int codigo, String nome, float preco, float quantidade, Unidade unidade, String marca, String fornecedor, int dataDeCompra, int vencimento) {
         this.codigo = codigo;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
-        this.unid = unid;
+        this.unidade = unidade;
         this.marca = marca;
         this.fornecedor = fornecedor;
         this.dataDeCompra = dataDeCompra;
@@ -85,12 +85,12 @@ public class Estoque {
         this.dataDeCompra = dataDeCompra;
     }
 
-    public Unidade getUnid() {
-        return unid;
+    public Unidade getUnidade() {
+        return unidade;
     }
 
-    public void setUnid(Unidade unid) {
-        this.unid = unid;
+    public void setUnidade(Unidade unidade) {
+        this.unidade = unidade;
     }
 
     public int getVencimento() {
@@ -101,12 +101,12 @@ public class Estoque {
         this.vencimento = vencimento;
     }
 
-    public int getAuxUnidade() {
-        return auxUnidade;
+    public int getCodigoUnidade() {
+        return codigoUnidade;
     }
 
-    public void setAuxUnidade(int auxUnidade) {
-        this.auxUnidade = auxUnidade;
+    public void setCodigoUnidade(int codigoUnidade) {
+        this.codigoUnidade = codigoUnidade;
     }
 
     public static Estoque obterEstoque(int codigo) throws ClassNotFoundException {
