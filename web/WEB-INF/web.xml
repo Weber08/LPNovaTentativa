@@ -32,6 +32,14 @@
         <servlet-name>PesquisarUnidadeController</servlet-name>
         <servlet-class>controller.PesquisarUnidadeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PesquisarFornecedorController</servlet-name>
+        <servlet-class>controller.PesquisarFornecedorController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterFornecedorController</servlet-name>
+        <servlet-class>controller.ManterFornecedorController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisarProdutoController</servlet-name>
         <url-pattern>/PesquisarProdutoController</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>PesquisarUnidadeController</servlet-name>
         <url-pattern>/PesquisarUnidadeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisarFornecedorController</servlet-name>
+        <url-pattern>/PesquisarFornecedorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterFornecedorController</servlet-name>
+        <url-pattern>/ManterFornecedorController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
