@@ -12,12 +12,13 @@ public class Estoque {
     private float quantidade;
     private Unidade unidade;
     private String marca;
-    private String fornecedor;
+    private Fornecedor fornecedor;
     private int dataDeCompra;
     private int vencimento;
     private int codigoUnidade;
+    private int codigoFornecedor;
 
-    public Estoque(int codigo, String nome, float preco, float quantidade, Unidade unidade, String marca, String fornecedor, int dataDeCompra, int vencimento) {
+    public Estoque(int codigo, String nome, float preco, float quantidade, Unidade unidade, String marca, Fornecedor fornecedor, int dataDeCompra, int vencimento) {
         this.codigo = codigo;
         this.nome = nome;
         this.preco = preco;
@@ -69,11 +70,14 @@ public class Estoque {
         this.marca = marca;
     }
 
-    public String getFornecedor() {
+    public Fornecedor getFornecedor() throws ClassNotFoundException {
+        if((this.codigoFornecedor != 0) && (this.fornecedor == null)){
+            this.fornecedor = Fornecedor.obterFornecedor(this.codigoFornecedor);
+        }
         return fornecedor;
     }
 
-    public void setFornecedor(String fornecedor) {
+    public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
 
@@ -85,7 +89,10 @@ public class Estoque {
         this.dataDeCompra = dataDeCompra;
     }
 
-    public Unidade getUnidade() {
+    public Unidade getUnidade() throws ClassNotFoundException {
+        if((this.codigoUnidade != 0) && (this.unidade == null)){
+            this.unidade = Unidade.obterUnidade(this.codigoUnidade);
+        }
         return unidade;
     }
 
@@ -109,6 +116,15 @@ public class Estoque {
         this.codigoUnidade = codigoUnidade;
     }
 
+    public int getCodigoFornecedor() {
+        return codigoFornecedor;
+    }
+
+    public void setCodigoFornecedor(int codigoFornecedor) {
+        this.codigoFornecedor = codigoFornecedor;
+    }
+    
+    
     public static Estoque obterEstoque(int codigo) throws ClassNotFoundException {
         return EstoqueDAO.obterEstoque(codigo);
     }

@@ -34,8 +34,17 @@
                 </tr> 
                 <td>Marca:</td> 
                 <td><input type="text" name="txtMarca" value="${estoque.marca}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td>Fornecedor:</td> 
-                    <td><input type="text" name="txtFornecedor" value="${estoque.fornecedor}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                                       <tr>
+                        <td>Unidade:</td>
+                        <td>
+                            <select name="optFornecedor" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <option value="0" <c:if test="${estoque.fornecedor.codigo == null}"> selected</c:if>> </option>  
+                            <c:forEach items="${fornecedores}" var="fornecedor">
+                                <option value="${fornecedor.codigo}" <c:if test="${estoque.fornecedor.codigo == fornecedor.codigo}"> selected</c:if>>${fornecedor.descricao}</option>  
+                            </c:forEach>
+                        </select>
+                    </td>
+                </tr> 
                     <td>Data de Compra:</td> 
                     <td><input type="text" name="txtDataDeCompra" value="${estoque.dataDeCompra}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td>Vencimento:</td> 

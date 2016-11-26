@@ -29,9 +29,9 @@
                     <td> <c:out value="${estoque.nome}" /></td>
                     <td> <c:out value="${estoque.preco}" /></td>
                     <td> <c:out value="${estoque.quantidade}" /></td>
-                    <td> <c:out value="${estoque.codigoUnidade}" /></td>
+                    <td> <c:out value="${estoque.unidade.descricao}" /></td>
                     <td> <c:out value="${estoque.marca}" /></td>
-                    <td> <c:out value="${estoque.fornecedor}" /></td>
+                    <td> <c:out value="${estoque.fornecedor.descricao}" /></td>
                     <td> <c:out value="${estoque.dataDeCompra}" /></td>
                     <td> <c:out value="${estoque.vencimento}" /></td>
                     <td><a href="ManterEstoqueController?acao=prepararEditar&codigo=<c:out value="${estoque.codigo}"/>">Editar</a></td>
